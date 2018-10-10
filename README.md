@@ -6,10 +6,10 @@ This repo is intended as a first step into theScore DevOps interview.
 The headings below are related to each task you must finish to complete the DevOps Take-Home Test. We will provide you with a private key so that you can SSH into the instance.
 
 ### Python
-Write a python script that will query an endpoint for a json object. Extract the information required to create an inventory to be used by Ansible in the subsequent tasks.
+Write a python3 script that will query an endpoint for a json object. Extract the information required to create an inventory to be used by Ansible in the subsequent tasks.
 
 ### Hello World App
-Create an application using any programming language you wish (python,ruby,node, etc...) that will live within a container that returns a simple `Hello World! $(HOSTNAME)`. The output should be dynamic, and change with the hostname of the machine.
+Create an application using any programming language you wish (python, ruby, node, etc...) that will live within a container that returns a simple `Hello World! $(HOSTNAME)`. The output should be dynamic, and change with the hostname of the machine.
 
 ### Dockerfile
 Write a Dockerfile to build a container for the app created in the previous step with all the necessary dependencies. Make sure to write this file so that anyone can `docker build` and it works.
