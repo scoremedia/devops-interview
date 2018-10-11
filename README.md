@@ -24,6 +24,6 @@ Make sure the playbook does the following:
   - Make sure the application is accessible from the internet
 
 ### Getting your work to us
-Please send us your archived work to jimmy-approved-email@thescore.com. It should contain instructions on how to run each individual step.
+Please send us your archived work to devops-dash-interview[at]thescore-dot-com. It should contain instructions on how to run each individual step.
 
 In the interest of evaluating each candidate for their individual skillset, we request that you don't make your work publicly available. 
