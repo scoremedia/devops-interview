@@ -3,7 +3,7 @@
 This repo is intended as a first step into theScore DevOps interview.
 
 ## Instructions
-The headings below are related to each task you must finish to complete the DevOps Take-Home Test. We will provide you with a private key so that you can SSH into the instance.
+The headings below are related to each task you must finish to complete the DevOps Take-Home Test. We will provide you with a private key so that you can SSH into the instance using the `ubuntu` user.
 
 ### Python
 Write a python3 script that will query an endpoint for a json object. Extract the information required to create an inventory to be used by Ansible in the subsequent tasks.
