@@ -15,7 +15,7 @@ Create an application using any programming language you wish (python, ruby, nod
 Write a Dockerfile to build a container for the app created in the previous step with all the necessary dependencies. Make sure to write this file so that anyone can `docker build` and it works.
 
 ### Ansible Playbook
-Please feel free to make this as simple or complex as you wish but it should be called deploy.yml
+Please feel free to make this as simple or complex as you wish but it should be called `deploy.yml`.
 Make sure the playbook does the following:
   - Install Docker
   - Get the required files on the machine to build the container using the Dockerfile
