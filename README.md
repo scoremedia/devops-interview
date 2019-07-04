@@ -20,7 +20,7 @@ Create YAML files to deploy pods and service to K8 (minikube in this case).
 ### Ansible Playbook
 Please feel free to make this as simple or complex as you wish but it should be called `deploy.yml`.
 Make sure the playbook does the following:
-  - Install Minikube, kubectl and docker (docker-ce=18.06.1~ce~3-0~ubuntu)
+  - Install Minikube, kubectl and docker-ce
   - Get the required files on the machine to build the container using the Dockerfile
   - Make sure all your work is done in `/root/app`
   - Create deployment and service on minikube
