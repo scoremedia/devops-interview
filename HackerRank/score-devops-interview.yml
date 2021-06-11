@@ -1,0 +1,132 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  score
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: score-demo
+  namespace: score
+spec:
+  selector:
+    matchLabels:
+      app: score-demo
+  template:
+    metadata:
+      labels:
+        app: score-demo
+    spec:
+      containers:
+      - name: score-demo
+        image: devservices/interview-score:1.1
+        # command:
+        #   - "bash"
+        #   - "-c"
+        # args:
+        #   - "while true; do echo hello; sleep 10;done"
+        ports:
+        - containerPort: 4000
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: score-secret
+  namespace: score
+data:
+  # username: cG9zdGdyZXM=
+  username: c2NvcmU=
+  password: cG9zdGdyZXM=
+  database: c2NvcmVfZGV2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: score
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:10.1
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+          - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: score-secret
+                  key: database
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: score-secret
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: score-secret
+                  key: password
+      #     volumeMounts:
+      #       - mountPath: "/var/lib/postgresql/data"
+      #         name: "mendix-pgdata"
+      # volumes:
+      #   - hostPath:
+      #       path: "/home/ubuntu/pgdata"
+      #     name: mendix-pgdata
+# ---
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name:  postgres
+#   namespace: score
+# spec:
+#   selector:
+#     app:  postgres
+#   type:  NodePort
+#   ports:
+#   - name:  postgres
+#     port:  5432
+#     targetPort:  5432
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  app
+  namespace: score
+spec:
+  selector:
+    app:  score-demo
+  type:  ClusterIP
+  ports:
+  - name:  app
+    port:  80
+    targetPort:  4000
+
+# kubectl create secret generic score-secret \
+#   --from-literal=database='score_dev' \
+#   --from-literal=username='score' \
+#   --from-literal=password='postgres'
+
+
+# kubectl get secret score-secret -o jsonpath='{.data}'
+
+# alias k=kubectl
+# kubectl config set-context --current --namespace=score
+# unset HISTFILE && exit
